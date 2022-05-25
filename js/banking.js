@@ -6,6 +6,14 @@ function getInput(inputID) {
   return amount;
 }
 
+//display amount
+function displayAmount(amount, amountHolderID) {
+  const amountHolder = document.getElementById(amountHolderID);
+  const previousAmount = parseFloat(amountHolder.innerText);
+  const newAmount = previousAmount + amount;
+  amountHolder.innerText = newAmount;
+}
+
 //deposit handle
 document
   .getElementById("deposit-button")
@@ -13,10 +21,7 @@ document
     // get deposit amount
     const depositAmount = getInput("deposit-input");
     //display deposit amount
-    const depositHolder = document.getElementById("deposit-holder");
-    const previousDepositedAmount = parseFloat(depositHolder.innerText);
-    const newDepositedAmount = previousDepositedAmount + depositAmount;
-    depositHolder.innerText = newDepositedAmount;
+    displayAmount(depositAmount, "deposit-holder");
     //update balance
     const balanceHolder = document.getElementById("balance-holder");
     const previousBalance = parseFloat(balanceHolder.innerText);
@@ -31,10 +36,7 @@ document
     //get withdraw amount
     const withdrawAmount = getInput("withdraw-input");
     //display withdraw amount
-    const withdrawHolder = document.getElementById("withdraw-holder");
-    const previousWithdrawAmount = parseFloat(withdrawHolder.innerText);
-    const newWithdrawAmount = previousWithdrawAmount + withdrawAmount;
-    withdrawHolder.innerText = newWithdrawAmount;
+    displayAmount(withdrawAmount, "withdraw-holder");
     //update balance
     const balanceHolder = document.getElementById("balance-holder");
     const previousBalance = parseFloat(balanceHolder.innerText);
