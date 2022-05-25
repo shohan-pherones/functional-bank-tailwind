@@ -33,10 +33,14 @@ document
   .addEventListener("click", function () {
     // get deposit amount
     const depositAmount = getInput("deposit-input");
-    //display deposit amount
-    displayAmount(depositAmount, "deposit-holder");
-    //update balance
-    updateBalance(depositAmount, true);
+    if (depositAmount > 0) {
+      //display deposit amount
+      displayAmount(depositAmount, "deposit-holder");
+      //update balance
+      updateBalance(depositAmount, true);
+    } else {
+      alert("Please enter the right amount!");
+    }
   });
 
 //withdraw handle
@@ -45,8 +49,12 @@ document
   .addEventListener("click", function () {
     //get withdraw amount
     const withdrawAmount = getInput("withdraw-input");
-    //display withdraw amount
-    displayAmount(withdrawAmount, "withdraw-holder");
-    //update balance
-    updateBalance(withdrawAmount, false);
+    if (withdrawAmount > 0) {
+      //display withdraw amount
+      displayAmount(withdrawAmount, "withdraw-holder");
+      //update balance
+      updateBalance(withdrawAmount, false);
+    } else {
+      alert("Please enter the right amount!");
+    }
   });
