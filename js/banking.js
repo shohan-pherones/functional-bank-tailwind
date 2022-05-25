@@ -14,6 +14,19 @@ function displayAmount(amount, amountHolderID) {
   amountHolder.innerText = newAmount;
 }
 
+//update balance
+function updateBalance(amount, isAdd) {
+  const balanceHolder = document.getElementById("balance-holder");
+  const previousBalance = parseFloat(balanceHolder.innerText);
+  if (isAdd == true) {
+    const newBalance = previousBalance + amount;
+    balanceHolder.innerText = newBalance;
+  } else {
+    const newBalance = previousBalance - amount;
+    balanceHolder.innerText = newBalance;
+  }
+}
+
 //deposit handle
 document
   .getElementById("deposit-button")
@@ -23,10 +36,7 @@ document
     //display deposit amount
     displayAmount(depositAmount, "deposit-holder");
     //update balance
-    const balanceHolder = document.getElementById("balance-holder");
-    const previousBalance = parseFloat(balanceHolder.innerText);
-    const newBalance = previousBalance + depositAmount;
-    balanceHolder.innerText = newBalance;
+    updateBalance(depositAmount, true);
   });
 
 //withdraw handle
@@ -38,8 +48,5 @@ document
     //display withdraw amount
     displayAmount(withdrawAmount, "withdraw-holder");
     //update balance
-    const balanceHolder = document.getElementById("balance-holder");
-    const previousBalance = parseFloat(balanceHolder.innerText);
-    const newBalance = previousBalance - withdrawAmount;
-    balanceHolder.innerText = newBalance;
+    updateBalance(withdrawAmount, false);
   });
