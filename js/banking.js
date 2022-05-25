@@ -14,10 +14,17 @@ function displayAmount(amount, amountHolderID) {
   amountHolder.innerText = newAmount;
 }
 
+//get current balance
+function getCurrentBalance() {
+  const balanceHolder = document.getElementById("balance-holder");
+  const previousBalance = parseFloat(balanceHolder.innerText);
+  return previousBalance;
+}
+
 //update balance
 function updateBalance(amount, isAdd) {
   const balanceHolder = document.getElementById("balance-holder");
-  const previousBalance = parseFloat(balanceHolder.innerText);
+  const previousBalance = getCurrentBalance();
   if (isAdd == true) {
     const newBalance = previousBalance + amount;
     balanceHolder.innerText = newBalance;
@@ -49,7 +56,8 @@ document
   .addEventListener("click", function () {
     //get withdraw amount
     const withdrawAmount = getInput("withdraw-input");
-    if (withdrawAmount > 0) {
+    const currentBalance = getCurrentBalance();
+    if (withdrawAmount > 0 && withdrawAmount < currentBalance) {
       //display withdraw amount
       displayAmount(withdrawAmount, "withdraw-holder");
       //update balance
